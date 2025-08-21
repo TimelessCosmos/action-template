@@ -10,7 +10,7 @@ on:
         type: string
       branch:
         description: "Which branch it runs from"
-        required: false
+        required: true
         type: string
     secrets:
       MY_SECRET:
