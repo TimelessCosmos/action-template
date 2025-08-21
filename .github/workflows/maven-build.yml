@@ -1,4 +1,5 @@
-name: Maven Build
+name: Maven Build Template
+description: Template for building Maven projects using GitHub Actions
 
 on:
   push:
@@ -18,3 +19,6 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean install
+
+    - name: Finish Run
+      run: echo "Finish run from GitHub Actions template!"
