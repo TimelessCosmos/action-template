@@ -2,12 +2,15 @@ name: Maven Build Template
 description: Template for building Maven projects using GitHub Actions
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_call:  # <-- makes this workflow callable
+    inputs:
+      name:
+        description: "Who to greet"
+        required: false
+        type: string
+    secrets:
+      MY_SECRET:
+        required: false
 
 jobs:
   build:
@@ -21,4 +24,4 @@ jobs:
       run: mvn clean install
 
     - name: Finish Run
-      run: echo "Finish run from GitHub Actions template!"
+      run: echo "${{ inputs.name }} Finish run from GitHub Actions template!"
