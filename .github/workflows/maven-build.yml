@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/timelesscosmos/action-template/mule-builder:1.0.0
+      image: ghcr.io/timelesscosmos/action-template/mule-builder:latest
 
     steps:
     - name: Checkout code
