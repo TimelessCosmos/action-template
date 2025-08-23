@@ -95,5 +95,5 @@ RUN java -version
 RUN mvn -v
 RUN node -v
 RUN npm -v
-RUN anypoint-cli --version
+RUN npm list -g anypoint-cli --depth=0
 RUN aws --version
