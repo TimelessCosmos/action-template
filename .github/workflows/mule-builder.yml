@@ -30,6 +30,7 @@ jobs:
       - name: Set image tags
         run: |
           REPO_LC=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+          BUILD_NUMBER=${{ github.run_number }}
           echo "IMAGE_NAME=ghcr.io/${REPO_LC}/mule-builder" >> $GITHUB_ENV
           echo "IMAGE_TAG_LATEST=latest" >> $GITHUB_ENV
           echo "IMAGE_TAG_VERSION=1.0.${BUILD_NUMBER}" >> $GITHUB_ENV
