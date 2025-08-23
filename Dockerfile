@@ -49,37 +49,26 @@ RUN npm install -g anypoint-cli@3.22.7
 ENV PATH="/usr/local/bin:$PATH"
 
 # ----------------------------
-# Create non-root github user
+# Copy Maven settings.xml (root)
 # ----------------------------
-RUN useradd -m -s /bin/bash github
+RUN mkdir -p /root/.m2
+COPY ./config/settings.xml /root/.m2/settings.xml
 
 # ----------------------------
-# Copy Maven settings.xml to github home
+# Copy Anypoint CLI config to ~/.anypoint (root)
 # ----------------------------
-USER root
-RUN mkdir -p /home/github/.m2
-COPY ./config/settings.xml /home/github/.m2/settings.xml
-RUN chown -R github:github /home/github/.m2
+RUN mkdir -p /root/.anypoint
+COPY ./config/credentials /root/.anypoint/credentials
 
 # ----------------------------
-# Copy Anypoint CLI config to ~/.anypoint
-# ----------------------------
-RUN mkdir -p /home/github/.anypoint
-COPY ./config/credentials /home/github/.anypoint/credentials
-RUN chown -R github:github /home/github/.anypoint
-
-# ----------------------------
-# Maven local repo
+# Maven local repo (root)
 # ----------------------------
 RUN mkdir -p /ut01/.m2/repository
-RUN chown -R github:github /ut01/.m2
 
 # ----------------------------
-# Switch to github user for runtime
+# Stay as root for runtime
 # ----------------------------
-USER github
-WORKDIR /github/workspace
-RUN mkdir -p /github/workspace && chown -R github:github /github/workspace
+WORKDIR /root
 
 # ----------------------------
 # Set environment variables for github user
