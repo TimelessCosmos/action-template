@@ -10,10 +10,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ----------------------------
-# Install JDK 17
+# Install JDK 21
 # ----------------------------
-RUN apt-get update && apt-get install -y openjdk-17-jdk && rm -rf /var/lib/apt/lists/*
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+RUN apt-get update && apt-get install -y openjdk-21-jdk && rm -rf /var/lib/apt/lists/*
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 
 # ----------------------------
 # Install Maven 3.9.8
@@ -73,7 +73,7 @@ WORKDIR /root
 # ----------------------------
 # Set environment variables for github user
 # ----------------------------
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV MAVEN_HOME=/opt/apache-maven-3.9.8
 ENV PATH="$JAVA_HOME/bin:$MAVEN_HOME/bin:/opt/node-v18.20.5-linux-x64/bin:/usr/local/bin:$PATH"
 
